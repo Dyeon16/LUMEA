@@ -1,0 +1,54 @@
+:root{
+  --cream:#F7F2E6;
+  --cream-deep:#EEE6D2;
+  --green:#16332A;
+  --green-soft:#24473A;
+  --sage:#8FA088;
+  --text:#1E2721;
+  --text-muted:#5E685E;
+  --line:rgba(22,51,42,0.12);
+  --serif:'Gowun Batang', 'Noto Serif KR', serif;
+  --sans:'Noto Sans KR', system-ui, sans-serif;
+}
+body{margin:0; font-family:var(--sans); color:var(--text); background:var(--cream);}
+a{color:inherit; text-decoration:none;}
+a:hover{opacity:0.82;}
+h1,h2,h3{margin:0; letter-spacing:-0.01em; font-family:var(--serif); font-weight:700;}
+p{margin:0;}
+button{font-family:inherit; cursor:pointer;}
+::selection{background:var(--sage); color:#fff;}
+
+/* Breathing room between the header and the hero image */
+.lm-hero{margin-top:14px;}
+
+/* Frames that clip an image moving inside them */
+.lm-clip{overflow:hidden; isolation:isolate;}
+
+/* Keeps the hero copy from flashing before its intro plays (main.js) */
+.js-motion .lm-hero-pad > *{opacity:0;}
+
+@media (max-width: 680px){
+  .lm-px{ padding-left:22px !important; padding-right:22px !important; }
+  .lm-py-xl{ padding-top:56px !important; padding-bottom:56px !important; }
+  .lm-py-lg{ padding-top:48px !important; padding-bottom:48px !important; }
+  .lm-header{ padding:16px 22px !important; row-gap:10px !important; }
+  .lm-nav{ order:3; width:100%; justify-content:center !important; gap:22px !important; font-size:12.5px !important; }
+  .lm-logo{ font-size:19px !important; }
+  .lm-hero{ height:560px !important; max-height:78vh !important; margin-top:8px; }
+  .lm-hero-pad{ padding:0 22px 44px !important; }
+  .lm-hero-eyebrow{ font-size:11px !important; letter-spacing:0.12em !important; }
+  .lm-h1{ font-size:30px !important; line-height:1.3 !important; }
+  .lm-hero-copy{ font-size:14.5px !important; }
+  .lm-cta{ padding:13px 26px !important; font-size:14px !important; }
+  .lm-badges{ gap:20px !important; }
+  .lm-badge-title{ font-size:13.5px !important; }
+  .lm-badge-desc{ font-size:11.5px !important; }
+  .lm-h2{ font-size:26px !important; }
+  .lm-h2-sub{ font-size:13.5px !important; }
+  .lm-h3{ font-size:19px !important; }
+  .lm-grid-card{ max-width:46% !important; min-width:140px !important; flex-basis:46% !important; }
+  .lm-grid-card-title{ font-size:14px !important; }
+  .lm-grid-card-desc{ font-size:12px !important; }
+  .lm-product-copy{ font-size:14.5px !important; }
+  .lm-footer-cols{ gap:28px !important; }
+}

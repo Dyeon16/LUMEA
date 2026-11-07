@@ -6,6 +6,17 @@
   // Motion is opt-in: with reduced motion the page stays a plain, static document.
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  /* The product video has no controls, so it plays whenever it is on screen.
+     This stays independent of GSAP so it still plays if the CDN is unreachable. */
+  var video = document.querySelector('[data-autoplay-in-view]');
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) {
+      video.play().catch(function () {});
+    } else {
+      video.pause();
+    }
+  }).observe(video);
+
   // If the CDN is unreachable, reveal the hero copy that the CSS hid and stop here.
   if (!window.gsap || !window.ScrollTrigger || !window.ScrollSmoother) {
     root.classList.remove('js-motion');
@@ -19,7 +30,7 @@
   var smoother = ScrollSmoother.create({
     wrapper: '#smooth-wrapper',
     content: '#smooth-content',
-    smooth: 1.1,
+    smooth: 0.6,
     ignoreMobileResize: true
   });
 
@@ -116,26 +127,6 @@
         scrollTrigger: { trigger: '#product', start: 'top bottom', end: 'bottom top', scrub: true }
       }
     );
-  });
-
-  /* Product video plays only while on screen, and stays paused if the viewer paused it. */
-  gsap.utils.toArray('[data-autoplay-in-view]').forEach(function (video) {
-    var pausedByViewer = false;
-    var inView = ScrollTrigger.create({
-      trigger: video,
-      start: 'top bottom',
-      end: 'bottom top',
-      onToggle: function (self) {
-        if (!self.isActive) {
-          video.pause();
-        } else if (!pausedByViewer) {
-          video.play().catch(function () {});
-        }
-      }
-    });
-    video.addEventListener('pause', function () {
-      pausedByViewer = inView.isActive;
-    });
   });
 
   /* Buttons lift slightly on hover. */
